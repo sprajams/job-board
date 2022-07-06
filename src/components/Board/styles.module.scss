@@ -6,3 +6,31 @@
     margin: 20px 40px;
   }
 }
+.title {
+  text-align: center;
+  font-size: 2em;
+}
+
+.btn {
+  align-items: center;
+  border: 1px solid rgb(184, 181, 181);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  width: 200px;
+  height: 40px;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+  margin: auto;
+  box-shadow: 2px 2px 0 rgb(132, 132, 132);
+  background: inherit;
+}
+.btn:hover {
+  box-shadow: 5px 5px 0 rgb(111, 111, 111);
+  transform: translate(-3px, -3px);
+}
+.btn:active {
+  transform: translate(0px, 0px);
+  box-shadow: none;
+}

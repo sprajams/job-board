@@ -43,7 +43,7 @@ function Board() {
 
   return (
     <div>
-      <h2>HackerNews Jobs</h2>
+      <h2 className={styles.title}>HackerNews Jobs Bulletin</h2>
       <div className={styles.dataContainer}>
         {postData.length > 0
           ? postData.map((x, i) => {
@@ -55,7 +55,14 @@ function Board() {
             })
           : null}
       </div>
-      <button onClick={loadMorePosts}>load more</button>
+      {postData.length > 0 ? (
+        <button onClick={loadMorePosts} className={styles.btn}>
+          <span className={styles.btnTop}>load more</span>
+          <span className={styles.btnBottom}></span>
+        </button>
+      ) : (
+        <div>LOADING</div>
+      )}
     </div>
   );
 }
