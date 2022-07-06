@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Posting from "../Posting";
+import Loading from "../Loading";
 import styles from "./styles.module.scss";
 
 function Board() {
@@ -29,20 +30,25 @@ function Board() {
         ).then((res) => res.json());
         newStuff.push(awaitData);
       }
+      setIsLoading(false);
       setPostData(newStuff);
     }
   };
+  const [isLoading, setIsLoading] = useState(false);
+
   // fetch and display job postings on page load, and when user clicks to load more
   useEffect(() => {
     fetchPostIds(postIds, numPostDisplay);
   }, [postIds, numPostDisplay]);
+
   // handle when user clicks to load more
   const loadMorePosts = () => {
     setNumPostDisplay(numPostDisplay + 6);
+    setIsLoading(true);
   };
 
   return (
-    <div>
+    <div className={styles.outer}>
       <h2 className={styles.title}>HackerNews Jobs Bulletin</h2>
       <div className={styles.dataContainer}>
         {postData.length > 0
@@ -55,13 +61,14 @@ function Board() {
             })
           : null}
       </div>
+      <div className={styles.dataLoading}>{isLoading ? <Loading /> : null}</div>
       {postData.length > 0 ? (
         <button onClick={loadMorePosts} className={styles.btn}>
           <span className={styles.btnTop}>load more</span>
           <span className={styles.btnBottom}></span>
         </button>
       ) : (
-        <div>LOADING</div>
+        <Loading />
       )}
     </div>
   );

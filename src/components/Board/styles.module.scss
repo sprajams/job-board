@@ -1,3 +1,6 @@
+.outer {
+  height: 100%;
+}
 .dataContainer {
   @media (min-width: 768px) {
     display: grid;
@@ -33,4 +36,10 @@
 .btn:active {
   transform: translate(0px, 0px);
   box-shadow: none;
+}
+
+.dataLoading {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
