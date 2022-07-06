@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 function Board() {
   const [postIds, setPostIds] = useState([]);
 
+  // on page load, fetch all post IDs
   useEffect(() => {
     fetch(`https://hacker-news.firebaseio.com/v0/jobstories.json`)
       .then((res) => res.json())
@@ -14,12 +15,13 @@ function Board() {
   }, []);
 
   const [postData, setPostData] = useState([]);
-  const [numPostDisplay, setNumPostDisplay] = useState(2);
-  // on page load, display first 9 job postings
+  const [numPostDisplay, setNumPostDisplay] = useState(9);
+  //   fetch data of first posting in the postIds array before moving on to next posting
   const fetchPostIds = async (data, num) => {
     if (data.length > 0) {
+      // grab number of posting that should be displayed
       const dataToDisplay = data.slice(0, num);
-      console.log(dataToDisplay);
+      // work around to avoid duplicates on posts displayed
       const newStuff = [];
       for (const x in dataToDisplay) {
         const awaitData = await fetch(
@@ -30,12 +32,13 @@ function Board() {
       setPostData(newStuff);
     }
   };
+  // fetch and display job postings on page load, and when user clicks to load more
   useEffect(() => {
     fetchPostIds(postIds, numPostDisplay);
   }, [postIds, numPostDisplay]);
-
+  // handle when user clicks to load more
   const loadMorePosts = () => {
-    setNumPostDisplay(numPostDisplay + 2);
+    setNumPostDisplay(numPostDisplay + 6);
   };
 
   return (
@@ -46,15 +49,13 @@ function Board() {
           ? postData.map((x, i) => {
               return (
                 <div key={i}>
-                  {/* <div>{i}</div>
-                <div>{x.title}</div> */}
                   <Posting data={x} />
                 </div>
               );
             })
           : null}
       </div>
-      <button onClick={loadMorePosts}>load more jobs</button>
+      <button onClick={loadMorePosts}>load more</button>
     </div>
   );
 }
