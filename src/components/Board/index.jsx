@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Posting from "../Posting";
 
 function Board() {
   const [postIds, setPostIds] = useState([]);
@@ -12,7 +13,7 @@ function Board() {
   }, []);
 
   const [postData, setPostData] = useState([]);
-  const [numPostDisplay, setNumPostDisplay] = useState(9);
+  const [numPostDisplay, setNumPostDisplay] = useState(2);
   // on page load, display first 9 job postings
   const fetchPostIds = async (data, num) => {
     if (data.length > 0) {
@@ -33,7 +34,7 @@ function Board() {
   }, [postIds, numPostDisplay]);
 
   const loadMorePosts = () => {
-    setNumPostDisplay(numPostDisplay + 6);
+    setNumPostDisplay(numPostDisplay + 2);
   };
 
   return (
@@ -43,13 +44,14 @@ function Board() {
         ? postData.map((x, i) => {
             return (
               <div key={i}>
-                <div>{i}</div>
-                <div>{x.title}</div>
+                {/* <div>{i}</div>
+                <div>{x.title}</div> */}
+                <Posting data={x} />
               </div>
             );
           })
         : null}
-      {postData.length}
+
       <button onClick={loadMorePosts}>load more jobs</button>
     </div>
   );
