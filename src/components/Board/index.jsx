@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Posting from "../Posting";
+import styles from "./styles.module.scss";
 
 function Board() {
   const [postIds, setPostIds] = useState([]);
@@ -40,18 +41,19 @@ function Board() {
   return (
     <div>
       <h2>HackerNews Jobs</h2>
-      {postData.length > 0
-        ? postData.map((x, i) => {
-            return (
-              <div key={i}>
-                {/* <div>{i}</div>
+      <div className={styles.dataContainer}>
+        {postData.length > 0
+          ? postData.map((x, i) => {
+              return (
+                <div key={i}>
+                  {/* <div>{i}</div>
                 <div>{x.title}</div> */}
-                <Posting data={x} />
-              </div>
-            );
-          })
-        : null}
-
+                  <Posting data={x} />
+                </div>
+              );
+            })
+          : null}
+      </div>
       <button onClick={loadMorePosts}>load more jobs</button>
     </div>
   );

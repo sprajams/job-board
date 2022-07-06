@@ -1,7 +1,6 @@
 .wrap {
   border: 1px solid rgb(216 212 212);
   border-radius: 8px;
-  width: 215px;
   height: 250px;
   padding: 20px;
   margin: 10px auto;
@@ -11,4 +10,7 @@
   box-shadow: 3px 3px 4px rgba(175, 174, 174, 0.395);
   text-decoration: none;
   color: inherit;
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 }
