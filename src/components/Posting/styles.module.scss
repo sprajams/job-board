@@ -2,15 +2,37 @@
   border: 1px solid rgb(216 212 212);
   border-radius: 8px;
   height: 250px;
-  padding: 20px;
+  padding: 25px 40px;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 3px 3px 4px rgba(175, 174, 174, 0.395);
   text-decoration: none;
   color: inherit;
   @media (min-width: 768px) {
     margin: 0;
   }
+}
+
+.wrap:hover {
+  background: rgba(249, 238, 238, 0.25);
+  box-shadow: 6px 6px 7px rgba(175, 174, 174, 0.85);
+  transform: translate(-5px, -10px);
+  font-size: 1.2em;
+  .pin {
+    display: none;
+  }
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.pin {
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }

@@ -28,7 +28,10 @@ function Posting({ data }) {
         rel="noreferrer"
         className={styles.wrap}
       >
-        <div>{companyTitle}</div>
+        <div>
+          <div className={styles.pin}>📌</div>
+          <div className={styles.title}>{companyTitle}</div>
+        </div>
         <div>{companyInfo}</div>
         <div>{todayDate}</div>
       </a>
